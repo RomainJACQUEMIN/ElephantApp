@@ -118,12 +118,13 @@ def load_pipe(filename: str) -> Pipeline:
         return pickle.load(f)
 
 
-def predict(data: pd.DataFrame, model: Pipeline) -> np.ndarray:
+def predict(data: pd.DataFrame,preproc:Pipeline, model: Pipeline) -> np.ndarray:
     """
-    Make predictions using the trained model
+    Preproc then make predictions using the trained model
 
     # WARNING : The data should be preprocessed before making predictions
     EXACTLY like the training data
     """
     data = clean_data(data)
-    return model.predict(data)
+    preproc_data = pd.DataFrame(preproc.transform(data),columns=preproc.get_feature_names_out())
+    return model.predict(preproc_data)

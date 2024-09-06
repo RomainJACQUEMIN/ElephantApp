@@ -114,9 +114,12 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
         "YrSold",
         "SaleType",
         "SaleCondition",
-        "SalePrice",
+     #   "SalePrice",
     ]
+    if "SalePrice" in data.columns: 
+        columns_to_keep.append("SalePrice")
     data = data.loc[:, columns_to_keep]
+    
     return data.dropna().drop_duplicates().dropna()
 
 
