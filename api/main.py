@@ -3,7 +3,6 @@ import os
 import pandas as pd
 from model import load_pipe, predict
 
-
 app = FastAPI()
 preproc = load_pipe("preprocessor.pkl")
 model = load_pipe("model.pkl")
