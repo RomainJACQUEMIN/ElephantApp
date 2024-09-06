@@ -37,8 +37,9 @@ def train():
     logger.log(logging.INFO,"Model trained successfully")
 
     logger.log(logging.INFO,"Saving the model")
-    save_model(model, "model.pkl")
-    logger.log(logging.INFO,"✅ Model saved successfully")
+    save_model(model, "model.pkl") # model
+    save_model(preproc, "preproc.pkl") #data preproc
+
     
     logger.log(logging.INFO,"Saving the metrics")
     save_metrics(model, x_test_preproc, y_test)

@@ -14,6 +14,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
 from data import clean_data
+import logging
 
 
 
@@ -68,10 +69,17 @@ def save_model(model: Pipeline, filename: str) -> None:
     """
     Save the model to the models folder
     """
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    logger.log(logging.INFO,f"{filename} saving successfully")
+
     if not os.path.exists("models"):
         os.makedirs("models")
     with open(os.path.join("models",filename), "wb") as f:
         pickle.dump(model, f)
+
+    logger.log(logging.INFO,f"✅ {filename} saved successfully")
+
 
 
 def save_metrics(model: Pipeline, X_test: pd.DataFrame, y_test: pd.Series) -> None:

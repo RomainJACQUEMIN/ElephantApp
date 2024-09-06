@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 import os
+import pandas as pd
+from model import load_pipe, predict
 
 app = FastAPI()
+preproc = load_pipe("preproc.pkl")
+model = load_pipe("model.pkl")
 
 @app.get("/")
 def read_root():
@@ -11,18 +15,16 @@ def read_root():
 def is_alive():
     return {"status": "ok"}
 
-
-@appp.get("/predict_one")
+@app.post("/predict_one")
 def predict_one(data: dict):
     """
     Return the prediction for one house
     """
-    pass
-
+    return  predict(pd.DataFrame(preproc.transform(data), columns=data.columns), model )
 
 @app.post("/predict_batch")
 def predict_batch(data: dict):
     """
     Return a CSV file with the predictions for a batch of houses
     """
-    pass
+    return  predict(pd.DataFrame(preproc.transform(data), columns=data.columns), model )
