@@ -1,13 +1,10 @@
 FROM python:3.10-slim
 
-WORKDIR /machine-learning-app
+WORKDIR /app
 
+COPY requirements.txt requirements.txt
 
+RUN pip install -r requirements.txt
+COPY app/app.py app.py
 
-COPY requirements.txt app/requirements.txt
-RUN pip install -r app/requirements.txt
-
-COPY app.py app.py
-
-# Run  streamlit with the default attributs
-CMD ["streamlit", "run", "app/app.py"]
+CMD ["streamlit", "run", "app.py"]

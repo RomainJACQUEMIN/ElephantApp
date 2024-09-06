@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import os
 import pandas as pd
-from model import load_pipe, predict
+from src.model import load_pipe, predict
 
 app = FastAPI()
 preproc = load_pipe("preprocessor.pkl")

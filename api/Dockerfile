@@ -1,13 +1,15 @@
 FROM python:3.10-slim
 
-WORKDIR /elephant-app
+WORKDIR /api
 
-COPY requirements.txt api/requirements.txt
-RUN pip install -r api/requirements.txt
-RUN pip install -e .
+COPY requirements.txt requirements.txt
+COPY src/ src/
+COPY setup.py setup.py
+COPY models/ models/
 
+RUN pip install -r requirements.txt
 
-COPY main.py main.py
+COPY api/main.py main.py
 
 # Run the FastAPI app with Uvicorn on $PORT
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080","--reload"]

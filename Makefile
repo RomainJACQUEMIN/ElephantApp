@@ -14,7 +14,7 @@ test_api :
 
 build_local_api : 
 	@echo "Building local API"
-	docker build -t local-api -f Dockerfile .
+	docker build -t local-api -f api/Dockerfile .
 
 run_local_api_docker : build_local_api
 	@echo "Running local API in Docker"

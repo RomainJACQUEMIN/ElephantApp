@@ -13,7 +13,7 @@ from sklearn.ensemble import (
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
-from data import clean_data
+from src.data import clean_data
 import logging
 
 

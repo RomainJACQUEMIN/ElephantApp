@@ -1,11 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from src.data import load_data, clean_data
-from src.model import predict, load_pipe
 import pandas as pd
 import requests
-
-
 
 # Set page configuration
 st.set_page_config(
@@ -104,7 +100,7 @@ if st.button("Perform a pediction"):
             }  
 
     #requests call api 
-    API_URL = "http://127.0.0.1:8000/predict_one"
+    API_URL = "http://local-api:8080/predict_one"
     headers = {    
                 "accept": "application/json",
                 "Content-Type": "application/json" 
